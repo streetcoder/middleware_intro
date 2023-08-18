@@ -7,9 +7,10 @@ const morgan = require('morgan');
 app.use(morgan('tiny'))
 
 app.use((req,res,next) =>{
-    console.log(req.method.toUpperCase(), req.path);
+    console.log(req.method.toUpperCase());
     next();
 })
+
 
 // app.use((rer, res, next) => {
 //     console.log("THIS IS MY FIRST MIDDLEWARE!!!")
@@ -26,6 +27,10 @@ app.get('/', (req, res) => {
 app.get('/dogs', (req, res) => {
     console.log("THIS IS MY THIRD MIDDLEWARE!!!")
     res.send('Woof Woof!!');
+})
+// not found 
+app.use((req, res) => {
+    res.status(404).send('Not Found!')
 })
 
 app.listen(3000, () => {
