@@ -21,13 +21,25 @@ app.use((req,res,next) =>{
 //     next();
 // })
 
+
+
+app.use((req, res, next) => {
+     const {password} = req.query;
+     if(password === 'chickennugget'){
+        next()
+     }
+     res.send('SORRY YOU NEED A PASSWORD')
+})
+
+
 app.get('/', (req, res) => {    
     res.send('Home Page');
-})
+})    
 app.get('/dogs', (req, res) => {
     console.log("THIS IS MY THIRD MIDDLEWARE!!!")
     res.send('Woof Woof!!');
-})
+})    
+
 // not found 
 app.use((req, res) => {
     res.status(404).send('Not Found!')
